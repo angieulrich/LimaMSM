@@ -225,8 +225,8 @@ calc_nwstats.mard <- function(time.unit = 7,
   num.inst.W <- num.W * deg.mp.W * mdeg.inst.W * time.unit
 
   if (!is.na(qnts.B[1]) & !is.na(qnts.W[1])) {
-    num.riskg.B <- 2 * (0.2*num.B) * qnts.B * time.unit
-    num.riskg.W <- 2 * (0.2*num.W) * qnts.W * time.unit
+    num.riskg.B <- (0.2*num.B) * qnts.B * time.unit
+    num.riskg.W <- (0.2*num.W) * qnts.W * time.unit
   }
 
   # Number of instant partnerships per time step, by race
