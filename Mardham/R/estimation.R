@@ -224,9 +224,9 @@ calc_nwstats.mard <- function(time.unit = 7,
   num.inst.B <- num.B * deg.mp.B * mdeg.inst.B * time.unit
   num.inst.W <- num.W * deg.mp.W * mdeg.inst.W * time.unit
 
-  if (!is.na(qnts.B) & !is.na(qnts.W)) {
-    num.riskg.B <- (0.2*num.B) * qnts.B * time.unit
-    num.riskg.W <- (0.2*num.W) * qnts.W * time.unit
+  if (!is.na(qnts.B[1]) & !is.na(qnts.W[1])) {
+    num.riskg.B <- 2 * (0.2*num.B) * qnts.B * time.unit
+    num.riskg.W <- 2 * (0.2*num.W) * qnts.W * time.unit
   }
 
   # Number of instant partnerships per time step, by race
@@ -263,7 +263,7 @@ calc_nwstats.mard <- function(time.unit = 7,
   }
 
 
-  if (!is.na(qnts.B) & !is.na(qnts.W)) {
+  if (!is.na(qnts.B[1]) & !is.na(qnts.W[1])) {
     stats.i <- c(edges.i,
                  num.inst.B[-1], num.inst.W,
                  num.riskg.B[-3], num.riskg.W[-3],
