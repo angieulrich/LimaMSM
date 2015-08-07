@@ -41,6 +41,7 @@
 #'        values and \code{"homogeneous"} using a weighted average.
 #' @param diss.main Dissolution model formula for main partnerships.
 #' @param diss.pers Dissolution model formula for casual partnerships.
+#' @param dur.method Method for calculating the duration vectors.
 #' @param durs.main Vector of length 3 with the duration of BB, BW, and WW main
 #'        partnerships in days.
 #' @param durs.pers Vector of length 3 with the duration of BB, BW, and WW
@@ -87,6 +88,7 @@ calc_nwstats.mard <- function(time.unit = 7,
                               age.method = "heterogeneous",
                               diss.main,
                               diss.pers,
+                              dur.method = "heterogeneous",
                               durs.main,
                               durs.pers,
                               ages,
@@ -160,6 +162,10 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Dissolution model
   exp.mort <- (mean(asmr.B[ages]) + mean(asmr.W[ages])) / 2
 
+  if (dur.method == "homogeneous") {
+    weights <- edges.nodemix.m / sum(edges.nodemix.m)
+    durs.main <- sum(durs.main * weights)
+  }
   coef.diss.m <- dissolution_coefs(dissolution = diss.main,
                                    duration = durs.main / time.unit,
                                    d.rate = exp.mort)
@@ -212,6 +218,10 @@ calc_nwstats.mard <- function(time.unit = 7,
                conc.p.by.race, sqrt.adiff.p)
 
   # Dissolution model
+  if (dur.method == "homogeneous") {
+    weights <- edges.nodemix.p / sum(edges.nodemix.p)
+    durs.pers <- sum(durs.pers * weights)
+  }
   coef.diss.p <- dissolution_coefs(dissolution = diss.pers,
                                    duration = durs.pers / time.unit,
                                    d.rate = exp.mort)
@@ -360,6 +370,4 @@ base_nw.mard <- function(nwstats) {
 
   return(nw)
 }
-
-
 
