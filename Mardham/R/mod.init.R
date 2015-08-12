@@ -111,11 +111,7 @@ initialize.mard <- function(x, param, init, control, s) {
   dat$attr$inst.ai.class <- inst.ai.class
 
   # Role class
-  role.class <- rep(NA, num)
-  role.class[ids.B] <- sample(apportion.lr(num.B, c("I", "R", "V"),
-                                           param$role.B.prob))
-  role.class[ids.W] <- sample(apportion.lr(num.W, c("I", "R", "V"),
-                                           param$role.W.prob))
+  role.class <- dat$nw[[1]] %v% "role.class"
   dat$attr$role.class <- role.class
 
   # Ins.quot
