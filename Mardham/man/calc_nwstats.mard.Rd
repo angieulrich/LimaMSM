@@ -7,8 +7,9 @@
 calc_nwstats.mard(time.unit = 7, num.B, num.W, deg.mp.B, deg.mp.W,
   mdeg.inst.B, mdeg.inst.W, qnts.B, qnts.W, prop.hom.mpi.B, prop.hom.mpi.W,
   balance = "mean", sqrt.adiff.BB, sqrt.adiff.WW, sqrt.adiff.BW,
-  age.method = "heterogeneous", diss.main, diss.pers, durs.main, durs.pers,
-  ages, asmr.B, asmr.W, role.B.prob, role.W.prob)
+  age.method = "heterogeneous", diss.main, diss.pers,
+  dur.method = "heterogeneous", durs.main, durs.pers, ages, asmr.B, asmr.W,
+  role.B.prob, role.W.prob)
 }
 \arguments{
 \item{time.unit}{Time unit relative to 1 for daily.}
@@ -65,6 +66,8 @@ values and \code{"homogeneous"} using a weighted average.}
 \item{diss.main}{Dissolution model formula for main partnerships.}
 
 \item{diss.pers}{Dissolution model formula for casual partnerships.}
+
+\item{dur.method}{Method for calculating the duration vectors.}
 
 \item{durs.main}{Vector of length 3 with the duration of BB, BW, and WW main
 partnerships in days.}
