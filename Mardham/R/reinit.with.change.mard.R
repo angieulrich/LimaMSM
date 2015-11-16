@@ -26,8 +26,8 @@ reinit.with.change.mard <- function(x, param, init, control, s) {
   if (is.null(x$temp)) {
     stop("x must contain temp to restart simulation", call. = FALSE)
   }
-  if (is.null(x$param$nwstatsfile)) {
-    stop("x$param must contain nwstatsfile to restart simulation", call. = FALSE)
+  if (is.null(param$nwstatsfile)) {
+    stop("param must contain nwstatsfile to restart simulation", call. = FALSE)
   }
 
     if (!is.null(control$currsim) & length(x$network) > 1) {
