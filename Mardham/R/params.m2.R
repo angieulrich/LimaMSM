@@ -524,16 +524,16 @@ init.mard.2 <- function(nwstats,
 #' EpiModel function \code{netsim}.
 #'
 #' @export
-control.mard.m2 <- function(simno = 1,
+control.mard <- function(simno = 1,
                          nsims = 1,
                          ncores = 1,
                          nsteps = 100,
                          start = 1,
                          resim.int = 1,
-                         initialize.FUN = initialize.mard.m2,
+                         initialize.FUN = initialize.mard,
                          aging.FUN = aging.mard,
                          deaths.FUN = deaths.mard,
-                         births.FUN = births.mard.m2,
+                         births.FUN = births.mard,
                          test.FUN = test.mard,
                          tx.FUN = tx.mard,
                          prep.FUN = prep.mard,
@@ -570,6 +570,6 @@ control.mard.m2 <- function(simno = 1,
   p$bi.mods <- grep(".FUN", names(formal.args), value = TRUE)
   p$user.mods <- grep(".FUN", names(dot.args), value = TRUE)
   
-  class(p) <- c("control.mard.m2", "control.net")
+  class(p) <- c("control.mard", "control.net")
   return(p)
 }
