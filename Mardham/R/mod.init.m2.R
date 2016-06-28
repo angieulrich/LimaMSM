@@ -7,8 +7,8 @@
 #'
 #' @param x An \code{EpiModel} object of class \code{\link{netest}}.
 #' @param param An \code{EpiModel} object of class \code{\link{param.mard}}.
-#' @param init An \code{EpiModel} object of class \code{\link{init.mard.2}}.
-#' @param control An \code{EpiModel} object of class \code{\link{control.mard.2}}.
+#' @param init An \code{EpiModel} object of class \code{\link{init.mard.m2}}.
+#' @param control An \code{EpiModel} object of class \code{\link{control.mard.m2}}.
 #' @param s Simulation number, used for restarting dependent simulations.
 #'
 #' @return

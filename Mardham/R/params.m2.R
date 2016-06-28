@@ -434,7 +434,7 @@ param.mard.m2 <- function(nwstats,
 #' function \code{\link{netsim}}.
 #'
 #' @export
-init.mard.2 <- function(nwstats,
+init.mard.m2 <- function(nwstats,
                       prev.B = 0.275,
                       prev.W = 0.275,
                       init.prev.age.slope.B = 0.05 / 12,
@@ -454,7 +454,7 @@ init.mard.2 <- function(nwstats,
   p$racepref.B.prob <- nwstats$racepref.B.prob
   p$racepref.W.prob <- nwstats$racepref.W.prob
   
-  class(p) <- c("init.mard.2", "init.net")
+  class(p) <- c("init.mard.m2", "init.net")
   return(p)
 }
 
