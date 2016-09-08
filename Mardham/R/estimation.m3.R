@@ -177,8 +177,8 @@ calc_nwstats.mard.m3 <- function(time.unit = 7,
   }
   
   # Compile target stats 
-  # stats.m <- c(edges.m, edges.nodemix.m[2:3], totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m) # NO NODEMIX TERM IN FORMATION MODEL ANYMORE
-  stats.m <- c(edges.m, totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m)
+   stats.m <- c(edges.m, edges.mix.m[2:3], totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m) 
+  #stats.m <- c(edges.m, totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m)
   
   
   # Dissolution model #replaced edges.nodemix.m with edges.mix.m
@@ -252,8 +252,8 @@ calc_nwstats.mard.m3 <- function(time.unit = 7,
   }
   
   # Compile target statistics
-  # stats.p <- c(edges.p, edges.nodemix.p[2:3], totdeg.p.by.dm[c(2, 4)], conc.p.by.race, sqrt.adiff.p) # no nodemix 
-  stats.p <- c(edges.p, totdeg.p.by.dm[c(2, 4)], conc.p.by.race, sqrt.adiff.p)
+   stats.p <- c(edges.p, edges.mix.p[2:3], totdeg.p.by.dm[c(2, 4)], conc.p.by.race, sqrt.adiff.p)
+ # stats.p <- c(edges.p, totdeg.p.by.dm[c(2, 4)], conc.p.by.race, sqrt.adiff.p)
   
   # Dissolution model #now using edges.mix.p instead of edges.nodemix.p
   if (dur.method == "homogeneous") {
@@ -326,7 +326,17 @@ calc_nwstats.mard.m3 <- function(time.unit = 7,
     sqrt.adiff.i <- edges.mix.i * weighted.avg
   }
   
-  
+  #not using edges.hom.i as target stats - no nodematch term 
+ # if (!is.na(qnts.B[1]) & !is.na(qnts.W[1])) {
+  #  stats.i <- c(edges.i,
+   #              num.inst.B[-1], num.inst.W,
+    #             num.riskg.B[-3], num.riskg.W[-3],
+     #            edges.hom.i, sqrt.adiff.i)
+  #} else {
+   # stats.i <- c(edges.i,
+    #             num.inst.B[-1], num.inst.W,
+     #            edges.hom.i, sqrt.adiff.i)
+    
   if (!is.na(qnts.B[1]) & !is.na(qnts.W[1])) {
     stats.i <- c(edges.i,
                  num.inst.B[-1], num.inst.W,
