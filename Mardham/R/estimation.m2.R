@@ -283,7 +283,7 @@ calc_nwstats.mard.m2 <- function(time.unit = 7,
   if (!is.na(qnts.B[1]) & !is.na(qnts.W[1])) {
     stats.i <- c(edges.i,
                  num.inst.B[-1], num.inst.W,
-                 num.riskg.B[-(1:2)], num.riskg.W[-(1:2)],
+                 num.riskg.B[-(1:3)], num.riskg.W[-(1:3)],
                  edges.hom.i, sqrt.adiff.i)
   } else {
     stats.i <- c(edges.i,
