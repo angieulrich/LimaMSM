@@ -115,27 +115,27 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Main partnerships -------------------------------------------------------
 
   # Persons in partnerships by casual degree by race
-  totdeg.m.by.dp <- c(num.B * deg.mp.B[2, ], num.W * deg.mp.W[2, ])
+ # totdeg.m.by.dp <- c(num.B * deg.mp.B[2, ], num.W * deg.mp.W[2, ])
 
   # Persons in partnerships by race
-  totdeg.m.by.race <- c(sum(totdeg.m.by.dp[1:3]), sum(totdeg.m.by.dp[4:6]))
+ # totdeg.m.by.race <- c(sum(totdeg.m.by.dp[1:3]), sum(totdeg.m.by.dp[4:6]))
 
   # Number of partnerships
   edges.m <- (sum(totdeg.m.by.dp)) / 2
 
   # Number of mixed-race partnerships, with balancing to decide
-  edges.m.B2W <- totdeg.m.by.race[1] * (1 - prop.hom.mpi.B[1])
-  edges.m.W2B <- totdeg.m.by.race[2] * (1 - prop.hom.mpi.W[1])
-  edges.het.m <- switch(balance,
-                        black = edges.m.B2W,
-                        white = edges.m.W2B,
-                        mean = (edges.m.B2W + edges.m.W2B) / 2)
+ # edges.m.B2W <- totdeg.m.by.race[1] * (1 - prop.hom.mpi.B[1])
+#  edges.m.W2B <- totdeg.m.by.race[2] * (1 - prop.hom.mpi.W[1])
+ # edges.het.m <- switch(balance,
+                       # black = edges.m.B2W,
+                      #  white = edges.m.W2B,
+                      #  mean = (edges.m.B2W + edges.m.W2B) / 2)
 
   # Number of same-race partnerships
-  edges.hom.m <- (totdeg.m.by.race - edges.het.m) / 2
+  # edges.hom.m <- (totdeg.m.by.race - edges.het.m) / 2
 
   # Nodemix target stat: numer of BB, BW, WW partnerships
-  edges.nodemix.m <- c(edges.hom.m[1], edges.het.m, edges.hom.m[2])
+  # edges.nodemix.m <- c(edges.hom.m[1], edges.het.m, edges.hom.m[2])
 
 
   # Sqrt absdiff term for age
@@ -156,8 +156,8 @@ calc_nwstats.mard <- function(time.unit = 7,
   }
 
   # Compile target stats
-  stats.m <- c(edges.m, edges.nodemix.m[2:3], totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m)
-
+  #stats.m <- c(edges.m, edges.nodemix.m[2:3], totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m)
+stats.m <- c(edges.m, sqrt.adiff.m)
 
   # Dissolution model
   exp.mort <- (mean(asmr.B[ages]) + mean(asmr.W[ages])) / 2
@@ -175,11 +175,11 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Casual partnerships -----------------------------------------------------
 
   # Persons in partnerships by main degree by race
-  totdeg.p.by.dm <- c(num.B * deg.mp.B[, 2] + num.B * deg.mp.B[, 3] * 2,
+ # totdeg.p.by.dm <- c(num.B * deg.mp.B[, 2] + num.B * deg.mp.B[, 3] * 2,
                       num.W * deg.mp.W[, 2] + num.W * deg.mp.W[, 3] * 2)
 
   # Persons in partnerships by race
-  totdeg.p.by.race <- c(sum(totdeg.p.by.dm[1:2]), sum(totdeg.p.by.dm[3:4]))
+  #totdeg.p.by.race <- c(sum(totdeg.p.by.dm[1:2]), sum(totdeg.p.by.dm[3:4]))
 
   # Persons concurrent by race
   conc.p.by.race <- c(sum(deg.mp.B[, 3]) * num.B, sum(deg.mp.W[, 3]) * num.W)
@@ -188,17 +188,17 @@ calc_nwstats.mard <- function(time.unit = 7,
   edges.p <- (sum(totdeg.p.by.dm)) / 2
 
   # Number of mixed-race partnerships, with balancing to decide
-  edges.p.B2W <- totdeg.p.by.race[1] * (1 - prop.hom.mpi.B[2])
-  edges.p.W2B <- totdeg.p.by.race[2] * (1 - prop.hom.mpi.W[2])
-  edges.het.p <- switch(balance,
-                        black = edges.p.B2W, white = edges.p.W2B,
-                        mean = (edges.p.B2W + edges.p.W2B) / 2)
+  #edges.p.B2W <- totdeg.p.by.race[1] * (1 - prop.hom.mpi.B[2])
+  #edges.p.W2B <- totdeg.p.by.race[2] * (1 - prop.hom.mpi.W[2])
+  #edges.het.p <- switch(balance,
+   #                     black = edges.p.B2W, white = edges.p.W2B,
+   #                     mean = (edges.p.B2W + edges.p.W2B) / 2)
 
   # Number of same-race partnerships
-  edges.hom.p <- (totdeg.p.by.race - edges.het.p) / 2
+ # edges.hom.p <- (totdeg.p.by.race - edges.het.p) / 2
 
   # Nodemix target stat: number of BB, BW, WW partnerships
-  edges.nodemix.p <- c(edges.hom.p[1], edges.het.p, edges.hom.p[2])
+  #edges.nodemix.p <- c(edges.hom.p[1], edges.het.p, edges.hom.p[2])
 
   # Sqrt absdiff term for age
   if (age.method == "heterogeneous") {
@@ -214,9 +214,10 @@ calc_nwstats.mard <- function(time.unit = 7,
   }
 
   # Compile target statistics
-  stats.p <- c(edges.p, edges.nodemix.p[2:3], totdeg.p.by.dm[c(2, 4)],
-               conc.p.by.race, sqrt.adiff.p)
-
+  #stats.p <- c(edges.p, edges.nodemix.p[2:3], totdeg.p.by.dm[c(2, 4)],
+   #            conc.p.by.race, sqrt.adiff.p)
+  stats.p <- c(edges.p, conc.p.by.race, sqrt.adiff.p)
+  
   # Dissolution model
   if (dur.method == "homogeneous") {
     weights <- edges.nodemix.p / sum(edges.nodemix.p)
@@ -240,25 +241,25 @@ calc_nwstats.mard <- function(time.unit = 7,
   }
 
   # Number of instant partnerships per time step, by race
-  totdeg.i.by.race <- c(sum(num.inst.B), sum(num.inst.W))
+#  totdeg.i.by.race <- c(sum(num.inst.B), sum(num.inst.W))
 
   # Number of partnerships
   edges.i <- sum(totdeg.i.by.race) / 2
 
   # Number of mixed-race partnerships, with balancing to decide
-  edges.i.B2W <- totdeg.i.by.race[1] * (1 - prop.hom.mpi.B[3])
-  edges.i.W2B <- totdeg.i.by.race[2] * (1 - prop.hom.mpi.W[3])
-  edges.het.i <- switch(balance,
-                        black = edges.i.B2W, white = edges.i.W2B,
-                        mean = (edges.i.B2W + edges.i.W2B) / 2)
+#  edges.i.B2W <- totdeg.i.by.race[1] * (1 - prop.hom.mpi.B[3])
+ # edges.i.W2B <- totdeg.i.by.race[2] * (1 - prop.hom.mpi.W[3])
+  #edges.het.i <- switch(balance,
+   #                     black = edges.i.B2W, white = edges.i.W2B,
+    #                    mean = (edges.i.B2W + edges.i.W2B) / 2)
 
   # Number of same-race partnerships
-  edges.hom.i <- edges.i - edges.het.i
+  #edges.hom.i <- edges.i - edges.het.i
 
   # Nodemix target stat: number of BB, BW, WW partnerships
-  edges.nodemix.i <- c((totdeg.i.by.race[1] - edges.het.i) / 2,
-                       edges.het.i,
-                       (totdeg.i.by.race[1] - edges.het.i) / 2)
+  #edges.nodemix.i <- c((totdeg.i.by.race[1] - edges.het.i) / 2,
+   #                    edges.het.i,
+    #                   (totdeg.i.by.race[1] - edges.het.i) / 2)
 
   if (age.method == "heterogeneous") {
     sqrt.adiff.i <- edges.nodemix.i * c(sqrt.adiff.BB[3],
@@ -279,9 +280,10 @@ calc_nwstats.mard <- function(time.unit = 7,
                  num.riskg.B[-(1:3)], num.riskg.W[-(1:3)],
                  edges.hom.i, sqrt.adiff.i)
   } else {
-    stats.i <- c(edges.i,
-                 num.inst.B[-1], num.inst.W,
-                 edges.hom.i, sqrt.adiff.i)
+    #stats.i <- c(edges.i,
+     #            num.inst.B[-1], num.inst.W,
+      #           edges.hom.i, sqrt.adiff.i)
+    stats.i <- c(edges.i, sqrt.adiff.i)
   }
 
 
