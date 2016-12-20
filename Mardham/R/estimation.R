@@ -163,7 +163,7 @@ stats.m <- c(edges.m, sqrt.adiff.m)
   exp.mort <- (mean(asmr.B[ages]) + mean(asmr.W[ages])) / 2
 
   if (dur.method == "homogeneous") {
-    weights <- edges.nodemix.m / sum(edges.nodemix.m)
+  #  weights <- edges.nodemix.m / sum(edges.nodemix.m)
     durs.main <- sum(durs.main * weights)
   }
   coef.diss.m <- dissolution_coefs(dissolution = diss.main,
