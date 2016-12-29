@@ -172,6 +172,8 @@ calc_nwstats.mard <- function(time.unit = 7,
   coef.diss.m <- dissolution_coefs(dissolution = diss.main,
                                    duration = durs.main / time.unit,
                                    d.rate = exp.mort)
+  exp.mort <- (mean(asmr.B[ages]) + mean(asmr.W[ages])) / 2
+  
 
 
 
@@ -292,12 +294,17 @@ calc_nwstats.mard <- function(time.unit = 7,
      #            num.inst.B[-1], num.inst.W,
       #           num.riskg.B[-(1:3)], num.riskg.W[-(1:3)],
        #          edges.hom.i, sqrt.adiff.i)
-    stats.i <- c(edges.i, num.inst[-1], num.riskg[-(3)],
-                 edges.hom.i, sqrt.adiff.i)
+    stats.i <- c(edges.i, 
+                 num.inst[-1], 
+                 num.riskg[-(3)],
+                 edges.hom.i, 
+                 sqrt.adiff.i)
   } else {
     stats.i <- c(edges.i,
-                 num.inst.B[-1], num.inst.W,
-                 edges.hom.i, sqrt.adiff.i)
+                 num.inst.B[-1], 
+                 num.inst.W,
+                 edges.hom.i, 
+                 sqrt.adiff.i)
 
   }
 
