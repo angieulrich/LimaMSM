@@ -115,7 +115,7 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Main partnerships -------------------------------------------------------
 
   # Persons in partnerships by casual degree by race
-  #totdeg.m.by.dp <- c(num.B * deg.mp.B[2, ], num.W * deg.mp.W[2, ])
+  totdeg.m.by.dp <- c(num.B * deg.mp.B[2, ], num.W * deg.mp.W[2, ])
 
   totdeg.m.by.dp.new <- num.B * deg.mp.B[2, ] + num.W * deg.mp.W[2, ]
   
