@@ -232,7 +232,7 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Compile target statistics
   #stats.p <- c(edges.p, edges.nodemix.p[2:3], totdeg.p.by.dm[c(2, 4)],
    #            conc.p.by.race, sqrt.adiff.p)
-  stats.p <- c(edges.p, totdeg.p.by.dm.new[2],conc.p, sqrt.adiff.p)
+  stats.p <- c(edges.p, totdeg.p.by.dm.new[2],conc.p, sqrt.adiff.p.new)
   
   # Dissolution model
   if (dur.method == "homogeneous") {
@@ -304,7 +304,7 @@ calc_nwstats.mard <- function(time.unit = 7,
     stats.i <- c(edges.i, 
                  num.inst[-1], 
                  num.riskg[-(3)],
-                 sqrt.adiff.i)
+                 sqrt.adiff.i.new)
   } else {
     stats.i <- c(edges.i,
                  num.inst.B[-1], 
