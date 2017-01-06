@@ -194,8 +194,8 @@ calc_nwstats.mard <- function(time.unit = 7,
   totdeg.p.by.race <- c(sum(totdeg.p.by.dm[1:2]), sum(totdeg.p.by.dm[3:4]))
 
   # Persons concurrent by race
-  #conc.p.by.race <- c(sum(deg.mp.B[, 3]) * num.B, sum(deg.mp.W[, 3]) * num.W)
-  conc.p <- mean( sum(deg.mp.B[, 3]) * num.B, sum(deg.mp.W[, 3]) * num.W)
+  conc.p.by.race <- c(sum(deg.mp.B[, 3]) * num.B, sum(deg.mp.W[, 3]) * num.W)
+  conc.p <- sum( conc.p.by.race)
   
   # Number of partnerships
   edges.p <- (sum(totdeg.p.by.dm)) / 2
@@ -232,7 +232,7 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Compile target statistics
   #stats.p <- c(edges.p, edges.nodemix.p[2:3], totdeg.p.by.dm[c(2, 4)],
    #            conc.p.by.race, sqrt.adiff.p)
-  stats.p <- c(edges.p, totdeg.p.by.dm.new[2],conc.p., sqrt.adiff.p)
+  stats.p <- c(edges.p, totdeg.p.by.dm.new[2],conc.p, sqrt.adiff.p)
   
   # Dissolution model
   if (dur.method == "homogeneous") {
