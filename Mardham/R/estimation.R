@@ -115,8 +115,10 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Main partnerships -------------------------------------------------------
 
   # Persons in partnerships by casual degree by race
-  totdeg.m.by.dp <- c(num.B * deg.mp.B[2, ], num.W * deg.mp.W[2, ])
+  #totdeg.m.by.dp <- c(num.B * deg.mp.B[2, ], num.W * deg.mp.W[2, ])
 
+  totdeg.m.by.dp.new <- num.B * deg.mp.B[2, ] + num.W * deg.mp.W[2, ]
+  
   # Persons in partnerships by race
   totdeg.m.by.race <- c(sum(totdeg.m.by.dp[1:3]), sum(totdeg.m.by.dp[4:6]))
 
@@ -143,12 +145,14 @@ calc_nwstats.mard <- function(time.unit = 7,
     stop("age.method must be \"heterogeneous\" or \"homogeneous\" ", call. = FALSE)
   }
   if (age.method == "heterogeneous") {
-  #  sqrt.adiff.m <- edges.nodemix.m * c(sqrt.adiff.BB[1],
-   #                                     sqrt.adiff.BW[1],
-    #                                    sqrt.adiff.WW[1])
-    sqrt.adiff.m <- sum(edges.nodemix.m) * mean(sqrt.adiff.BB[1],
+    sqrt.adiff.m <- edges.nodemix.m * c(sqrt.adiff.BB[1],
+                                        sqrt.adiff.BW[1],
+                                        sqrt.adiff.WW[1])
+    sqrt.adiff.m.new <- sum(edges.nodemix.m) * mean(sqrt.adiff.BB[1],
                                                 sqrt.adiff.BW[1],
                                                 sqrt.adiff.WW[1])
+    
+    
   }
   if (age.method == "homogeneous") {
     weighted.avg <- sum(edges.nodemix.m * c(sqrt.adiff.BB[1],
@@ -156,11 +160,11 @@ calc_nwstats.mard <- function(time.unit = 7,
                                             sqrt.adiff.WW[1])) /
       sum(edges.nodemix.m)
     sqrt.adiff.m <- edges.nodemix.m * weighted.avg
-  }
+ }
 
   # Compile target stats
   #stats.m <- c(edges.m, edges.nodemix.m[2:3], totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m)
-   stats.m <- c(edges.m, totdeg.m.by.dp[c(2:3, 5:6)], sqrt.adiff.m)
+   stats.m <- c(edges.m, totdeg.m.by.dp.new[c(2:3)], sqrt.adiff.m.new)
 
   # Dissolution model
   exp.mort <- (mean(asmr.B[ages]) + mean(asmr.W[ages])) / 2
@@ -182,13 +186,16 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Persons in partnerships by main degree by race
   totdeg.p.by.dm <- c(num.B * deg.mp.B[, 2] + num.B * deg.mp.B[, 3] * 2,
                       num.W * deg.mp.W[, 2] + num.W * deg.mp.W[, 3] * 2)
+  
+  totdeg.p.by.dm.new <- (num.B * deg.mp.B[, 2] + num.B * deg.mp.B[, 3] * 2) +
+                          (num.W * deg.mp.W[, 2] + num.W * deg.mp.W[, 3] * 2)
 
   # Persons in partnerships by race
   totdeg.p.by.race <- c(sum(totdeg.p.by.dm[1:2]), sum(totdeg.p.by.dm[3:4]))
 
   # Persons concurrent by race
   #conc.p.by.race <- c(sum(deg.mp.B[, 3]) * num.B, sum(deg.mp.W[, 3]) * num.W)
-  conc.p. <- mean( sum(deg.mp.B[, 3]) * num.B, sum(deg.mp.W[, 3]) * num.W)
+  conc.p <- mean( sum(deg.mp.B[, 3]) * num.B, sum(deg.mp.W[, 3]) * num.W)
   
   # Number of partnerships
   edges.p <- (sum(totdeg.p.by.dm)) / 2
@@ -208,10 +215,10 @@ calc_nwstats.mard <- function(time.unit = 7,
 
   # Sqrt absdiff term for age
   if (age.method == "heterogeneous") {
-    #sqrt.adiff.p <- edges.nodemix.p * c(sqrt.adiff.BB[2],
-     #                                   sqrt.adiff.BW[2],
-      #                                  sqrt.adiff.WW[2])
-    sqrt.adiff.p <- sum(edges.nodemix.p) * mean(sqrt.adiff.BB[2],
+    sqrt.adiff.p <- edges.nodemix.p * c(sqrt.adiff.BB[2],
+                                       sqrt.adiff.BW[2],
+                                        sqrt.adiff.WW[2])
+    sqrt.adiff.p.new <- sum(edges.nodemix.p) * mean(sqrt.adiff.BB[2],
                                                 sqrt.adiff.BW[2],
                                                 sqrt.adiff.WW[2])
     }
@@ -225,7 +232,7 @@ calc_nwstats.mard <- function(time.unit = 7,
   # Compile target statistics
   #stats.p <- c(edges.p, edges.nodemix.p[2:3], totdeg.p.by.dm[c(2, 4)],
    #            conc.p.by.race, sqrt.adiff.p)
-  stats.p <- c(edges.p, totdeg.p.by.dm[c(2, 4)],conc.p., sqrt.adiff.p)
+  stats.p <- c(edges.p, totdeg.p.by.dm.new[2],conc.p., sqrt.adiff.p)
   
   # Dissolution model
   if (dur.method == "homogeneous") {
@@ -274,10 +281,10 @@ calc_nwstats.mard <- function(time.unit = 7,
                        (totdeg.i.by.race[1] - edges.het.i) / 2)
 
   if (age.method == "heterogeneous") {
-   # sqrt.adiff.i <- edges.nodemix.i * c(sqrt.adiff.BB[3],
-    #                                    sqrt.adiff.BW[3],
-     #                                   sqrt.adiff.WW[3])
-    sqrt.adiff.i <- sum(edges.nodemix.i) * mean(sqrt.adiff.BB[3],
+    sqrt.adiff.i <- edges.nodemix.i * c(sqrt.adiff.BB[3],
+                                        sqrt.adiff.BW[3],
+                                        sqrt.adiff.WW[3])
+    sqrt.adiff.i.new <- sum(edges.nodemix.i) * mean(sqrt.adiff.BB[3],
                                                 sqrt.adiff.BW[3],
                                                 sqrt.adiff.WW[3])
   }
@@ -297,7 +304,6 @@ calc_nwstats.mard <- function(time.unit = 7,
     stats.i <- c(edges.i, 
                  num.inst[-1], 
                  num.riskg[-(3)],
-                 edges.hom.i, 
                  sqrt.adiff.i)
   } else {
     stats.i <- c(edges.i,
