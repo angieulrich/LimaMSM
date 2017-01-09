@@ -52,7 +52,7 @@ assign_degree <- function(nw, deg.type, nwstats) {
   deg.B <- apportion.lr(nB, 0:(num.degrees.B - 1), dist.B, shuffled = TRUE)
   deg.W <- apportion.lr(nW, 0:(num.degrees.W - 1), dist.W, shuffled = TRUE)
 
-  deg.B <- paste0("B", deg.B)
+  deg.B <- paste0("W", deg.B)
   deg.W <- paste0("W", deg.W)
 
   nw <- set.vertex.attribute(nw, attrname = attr.name, value = deg.B, v = vB)
